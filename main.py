@@ -71,41 +71,53 @@ def click_continue_button(sb):
 def enter_applicant_details(sb):
     """Applicant Details"""
     sb.wait_for_element("input[placeholder='Enter MIGRIS Application Number']", timeout=20)
-    sb.type("input[placeholder='Enter MIGRIS Application Number']", "12323232", by="css selector")
+    sb.type("input[placeholder='Enter MIGRIS Application Number']", "2408-LLG-5199", by="css selector")
     time.sleep(2)
 
     sb.wait_for_element("input[placeholder='Enter your first name']", timeout=20)
-    sb.type("input[placeholder='Enter your first name']", "First name", by="css selector")
+    sb.type("input[placeholder='Enter your first name']", "KAMRAN HAIDER", by="css selector")
     time.sleep(2)
 
-    sb.wait_for_element("input[placeholder='Enter your last name']", timeout=20)
-    sb.type("input[placeholder='Enter your last name']", "Last name", by="css selector")
+    sb.wait_for_element("input[placeholder='Please enter last name.']", timeout=20)
+    sb.type("input[placeholder='Please enter last name.']", "CHEEMA", by="css selector")
     time.sleep(2)
 
     select_option(sb, 'mat-select[id=mat-select-6]', "mat-option-6", sleep_time=5)
     time.sleep(2)
-    select_option(sb, 'mat-select[id=mat-select-6]', "mat-option-6", sleep_time=5)
-    time.sleep(2)
+
     sb.wait_for_element("input[id=dateOfBirth]", timeout=20)
-    sb.type("input[id=dateOfBirth]", "01/09/1990", by="css selector")
+    sb.type("input[id=dateOfBirth]", "16061998", by="css selector")
     time.sleep(2)
+
     select_option(sb, 'mat-select[id=mat-select-8]', "mat-option-164", sleep_time=5)
     time.sleep(2)
+
     sb.wait_for_element("input[placeholder='Enter passport number']", timeout=20)
-    sb.type("input[placeholder='Enter passport number']", "01/09/1990", by="css selector")
+    sb.type("input[placeholder='Enter passport number']", "CE4157092", by="css selector")
     time.sleep(2)
+
     sb.wait_for_element("input[id=passportExpirtyDate]", timeout=20)
-    sb.type("input[id=passportExpirtyDate]", "01/09/2030", by="css selector")
+    sb.type("input[id=passportExpirtyDate]", "13052027", by="css selector")
     time.sleep(2)
+
     sb.wait_for_element("input[placeholder='44']", timeout=20)
     sb.type("input[placeholder='44']", "92", by="css selector")
     time.sleep(2)
+
     sb.wait_for_element("input[placeholder='012345648382']", timeout=20)
     sb.type("input[placeholder='012345648382']", "9876543211", by="css selector")
     time.sleep(2)
+
     sb.wait_for_element("input[placeholder='Enter Email Address']", timeout=20)
     sb.type("input[placeholder='Enter Email Address']", "aman.geeksocean@gmail.com", by="css selector")
-    time.sleep(2)
+
+
+def click_save_button(sb):
+    """Clicks the 'Save' button with specific attributes."""
+    button_selector = "button.mat-focus-indicator.mat-stroked-button.mat-button-base.btn.btn-block.btn-brand-orange.mat-btn-lg"
+    sb.wait_for_element(button_selector, timeout=20)
+    sb.click(button_selector)
+    print("save button clicked")
 
 def main():
     """Main function to execute the script."""
@@ -116,7 +128,7 @@ def main():
         if click_button(sb, "button.mat-focus-indicator", sleep_time=10):
             click_button(sb, "button.mat-focus-indicator.btn.mat-btn-lg.btn-brand-orange.d-none.d-lg-inline-block.position-absolute.top-n3.right-0.z-index-999.mat-raised-button.mat-button-base")
 
-            select_option(sb, 'mat-select[formcontrolname="centerCode"]', "LTRPBK", sleep_time=4)
+            select_option(sb, 'mat-select[formcontrolname="centerCode"]', "LTRPBK", sleep_time=6)
             select_option(sb, 'mat-select[formcontrolname="selectedSubvisaCategory"]', "D", sleep_time=4)
             select_option(sb, 'mat-select[formcontrolname="visaCategoryCode"]', "010", sleep_time=5)
 
@@ -124,6 +136,7 @@ def main():
             update_slot_text(slot_text)
             click_continue_button(sb)
             enter_applicant_details(sb)
+            click_save_button(sb)
 
 
 if __name__ == "__main__":
