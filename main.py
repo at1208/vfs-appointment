@@ -118,10 +118,11 @@ def click_save_button(sb):
     sb.wait_for_element(button_selector, timeout=20)
     sb.click(button_selector)
     print("save button clicked")
+    time.sleep(2)
 
 def main():
     """Main function to execute the script."""
-    with SB(uc=True) as sb:
+    with SB(uc=True, headless=True) as sb:
         open_page(sb, URL)
         enter_credentials(sb, EMAIL, PASSWORD)
 
@@ -129,8 +130,8 @@ def main():
             click_button(sb, "button.mat-focus-indicator.btn.mat-btn-lg.btn-brand-orange.d-none.d-lg-inline-block.position-absolute.top-n3.right-0.z-index-999.mat-raised-button.mat-button-base")
 
             select_option(sb, 'mat-select[formcontrolname="centerCode"]', "LTRPBK", sleep_time=6)
-            select_option(sb, 'mat-select[formcontrolname="selectedSubvisaCategory"]', "D", sleep_time=4)
-            select_option(sb, 'mat-select[formcontrolname="visaCategoryCode"]', "010", sleep_time=5)
+            select_option(sb, 'mat-select[formcontrolname="selectedSubvisaCategory"]', "TRPVC", sleep_time=4)
+            select_option(sb, 'mat-select[formcontrolname="visaCategoryCode"]', "TSV6", sleep_time=5)
 
             slot_text = get_slot_text(sb, "div.alert")
             update_slot_text(slot_text)
